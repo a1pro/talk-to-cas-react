@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve real files and folders normally, e.g. assets, favicon, images.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # React/Vite single-page app fallback.
+  # This makes direct URLs such as /login, /register, /admin, /merchant work on Apache.
+  RewriteRule ^ index.html [L]
+</IfModule>
